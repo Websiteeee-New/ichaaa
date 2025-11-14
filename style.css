@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  background: #FFC0CB; /* pink muda */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.flipbook {
+  position: relative;
+  width: 500px;
+  height: 350px;
+  perspective: 1000px;
+  z-index: 1;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  backface-visibility: hidden;
+  transition: transform 0.8s, opacity 0.8s;
+  opacity: 0;
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.page .text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  font-size: 18px;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.page.active {
+  opacity: 1;
+  transform: scale(1.05) translate(0,0);
+  z-index: 1;
+  animation: zoomPan 8s ease-in-out forwards;
+}
+
+@keyframes zoomPan {
+  0% {
+    transform: scale(1) translate(0,0);
+  }
+  50% {
+    transform: scale(1.08) translate(-10px, -5px);
+  }
+  100% {
+    transform: scale(1.05) translate(0,0);
+  }
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.5);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+#prev {
+  left: -70px;
+}
+
+#next {
+  right: -70px;
+}
